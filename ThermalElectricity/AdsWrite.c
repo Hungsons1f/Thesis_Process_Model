@@ -1,17 +1,16 @@
-#define NumVar 7
+#define NumVar 1
 #define Offset 0
 
-#define S_FUNCTION_NAME  AdsRead
+#define S_FUNCTION_NAME  AdsWrite
 #define S_FUNCTION_LEVEL 2
 #include "simstruc.h"
-#include "matrix.h"
 #include "TcAdsDef.h"
 #include "TcAdsAPI.h"
 
 long      nErr, nPort;
 AmsAddr   Addr;
 PAmsAddr  pAddr = &Addr;
-double    dwData[7];
+double    dwData[NumVar];
 
 #define IS_PARAM_DOUBLE(pVal) (mxIsNumeric(pVal) && !mxIsLogical(pVal) &&\
 !mxIsEmpty(pVal) && !mxIsSparse(pVal) && !mxIsComplex(pVal) && mxIsDouble(pVal))
@@ -50,16 +49,15 @@ static void mdlInitializeSizes(SimStruct *S)
     if (ssGetNumSFcnParams(S) != ssGetSFcnParamsCount(S)) {
         return; /* Parameter mismatch reported by the Simulink engine*/
     }
-    
-    if (!ssSetNumInputPorts(S, 1)) return;
-    ssSetInputPortWidth(S, 0, DYNAMICALLY_SIZED);
-    ssSetInputPortDirectFeedThrough(S, 0, 1);
 
-    if (!ssSetNumOutputPorts(S, NumVar)) return;
+    if (!ssSetNumInputPorts(S, NumVar)) return;
     for (int_T i=0; i<NumVar; i++)
     {
-        ssSetOutputPortWidth(S, i, DYNAMICALLY_SIZED);
+        ssSetInputPortWidth(S, i, DYNAMICALLY_SIZED);
+        ssSetInputPortDirectFeedThrough(S, i, 1);
     }
+
+    if (!ssSetNumOutputPorts(S,0)) return;
 
     ssSetNumSampleTimes(S, 1);
 
@@ -76,26 +74,19 @@ static void mdlInitializeSizes(SimStruct *S)
     }
  	pAddr->port = (uint16_T)Port;         //851;
 }
-
 static void mdlInitializeSampleTimes(SimStruct *S)
 {
     ssSetSampleTime(S, 0, INHERITED_SAMPLE_TIME);
     ssSetOffsetTime(S, 0, 0.0);
 }
-
 static void mdlOutputs(SimStruct *S, int_T tid)
 {
     InputRealPtrsType uPtrs = ssGetInputPortRealSignalPtrs(S,0);
-    real_T *y[NumVar];
-    for (int_T i=0;i<NumVar;i++)
+    for (int_T i=0;i< NumVar;i++)
     {
-        y[i] = ssGetOutputPortRealSignal(S,i);
+        dwData[i] = *uPtrs[i];
     }
-
-    nErr = AdsSyncReadReq(pAddr, 0x4040, Offset, 8*NumVar, dwData);
-    for (int_T i=0; i<NumVar; i++) {
-        *y[i] = dwData[i];
-    }
+    nErr = AdsSyncWriteReq(pAddr, 0x4040, Offset, 8*NumVar, dwData);
 }
 
 static void mdlTerminate(SimStruct *S){

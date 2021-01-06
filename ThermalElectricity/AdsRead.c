@@ -1,5 +1,5 @@
-#define NumVar 7
-#define Offset 0
+#define NumVar 6
+#define Offset 168
 
 #define S_FUNCTION_NAME  AdsRead
 #define S_FUNCTION_LEVEL 2
@@ -11,7 +11,7 @@
 long      nErr, nPort;
 AmsAddr   Addr;
 PAmsAddr  pAddr = &Addr;
-double    dwData[7];
+double    dwData[NumVar];
 
 #define IS_PARAM_DOUBLE(pVal) (mxIsNumeric(pVal) && !mxIsLogical(pVal) &&\
 !mxIsEmpty(pVal) && !mxIsSparse(pVal) && !mxIsComplex(pVal) && mxIsDouble(pVal))
@@ -55,7 +55,7 @@ static void mdlInitializeSizes(SimStruct *S)
     ssSetInputPortWidth(S, 0, DYNAMICALLY_SIZED);
     ssSetInputPortDirectFeedThrough(S, 0, 1);
 
-    if (!ssSetNumOutputPorts(S, NumVar)) return;
+    if (!ssSetNumOutputPorts(S,NumVar)) return;
     for (int_T i=0; i<NumVar; i++)
     {
         ssSetOutputPortWidth(S, i, DYNAMICALLY_SIZED);
@@ -92,7 +92,7 @@ static void mdlOutputs(SimStruct *S, int_T tid)
         y[i] = ssGetOutputPortRealSignal(S,i);
     }
 
-    nErr = AdsSyncReadReq(pAddr, 0x4040, Offset, 8*NumVar, dwData);
+    nErr = AdsSyncReadReq(pAddr, 0x4020, Offset, 8*NumVar, dwData);
     for (int_T i=0; i<NumVar; i++) {
         *y[i] = dwData[i];
     }

@@ -1,7 +1,4 @@
-#define NumVar 7
-#define Offset 0
-
-#define S_FUNCTION_NAME  AdsRead
+#define S_FUNCTION_NAME  AdsPara
 #define S_FUNCTION_LEVEL 2
 #include "simstruc.h"
 #include "matrix.h"
@@ -33,6 +30,7 @@ static void mdlCheckParameters(SimStruct *S)
 //         ssSetErrorStatus(S, "Parameter to S-function must be non-negative");
 //         return;
 //     }
+    
     if (mxGetNumberOfElements(ssGetSFcnParam(S,1)) != 1 || !IS_PARAM_DOUBLE(pVal1)) {
         ssSetErrorStatus(S, "Parameter to S-function must be a scalar");
         return;
@@ -55,8 +53,8 @@ static void mdlInitializeSizes(SimStruct *S)
     ssSetInputPortWidth(S, 0, DYNAMICALLY_SIZED);
     ssSetInputPortDirectFeedThrough(S, 0, 1);
 
-    if (!ssSetNumOutputPorts(S, NumVar)) return;
-    for (int_T i=0; i<NumVar; i++)
+    if (!ssSetNumOutputPorts(S,7)) return;
+    for (int_T i=0; i<7; i++)
     {
         ssSetOutputPortWidth(S, i, DYNAMICALLY_SIZED);
     }
@@ -86,14 +84,14 @@ static void mdlInitializeSampleTimes(SimStruct *S)
 static void mdlOutputs(SimStruct *S, int_T tid)
 {
     InputRealPtrsType uPtrs = ssGetInputPortRealSignalPtrs(S,0);
-    real_T *y[NumVar];
-    for (int_T i=0;i<NumVar;i++)
+    real_T *y[7];
+    for (int_T i=0;i<7;i++)
     {
         y[i] = ssGetOutputPortRealSignal(S,i);
     }
 
-    nErr = AdsSyncReadReq(pAddr, 0x4040, Offset, 8*NumVar, dwData);
-    for (int_T i=0; i<NumVar; i++) {
+    nErr = AdsSyncReadReq(pAddr, 0x4040, 385072, 56, dwData);
+    for (int_T i=0; i<7; i++) {
         *y[i] = dwData[i];
     }
 }
