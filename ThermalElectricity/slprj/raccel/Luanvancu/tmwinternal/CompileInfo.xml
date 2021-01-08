@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MF0 version="1.1">
+  <ModelRefInfoRepo.ModelRefInfoRoot type="ModelRefInfoRepo.ModelRefInfoRoot" uuid="b4116c07-a228-4fef-9503-cad50805864e">
+    <dataTransferInfos>AAFJTQAAAAAOAAAAOAAAAAYAAAAIAAAAAgAAAAAAAAAFAAAACAAAAAAAAAABAAAAAQAAAAAAAAAFAAQAAQAAAAEAAAAAAAAA</dataTransferInfos>
+    <hasBwsAccessed>true</hasBwsAccessed>
+    <hasBwsAccessedByAnyModel>true</hasBwsAccessedByAnyModel>
+    <hasNonVirtualParameterChangeEvents>true</hasNonVirtualParameterChangeEvents>
+    <inportSignalObjects>AAFJTQAAAAAOAAAAKAAAAAYAAAAIAAAAAQAAAAAAAAAFAAAACAAAAAEAAAAAAAAAAQAAAAAAAAA=</inportSignalObjects>
+    <outportSignalObjects>AAFJTQAAAAAOAAAAKAAAAAYAAAAIAAAAAQAAAAAAAAAFAAAACAAAAAEAAAAAAAAAAQAAAAAAAAA=</outportSignalObjects>
+    <sFcnInfo type="ModelRefInfoRepo.SFcnInformation" uuid="037b7ed3-8b4d-401c-8e47-145be6de6677">
+      <blockSID>Luanvancu:589</blockSID>
+      <mexPath>C:\Program Files\MATLAB\Thesis_Process_Model\ThermalElectricity\AdsWrite.mexw64</mexPath>
+      <name>AdsWrite</name>
+      <sourceCodeExists>true</sourceCodeExists>
+    </sFcnInfo>
+    <sFcnInfo type="ModelRefInfoRepo.SFcnInformation" uuid="ff3d89f9-6af9-4af5-9bf9-7993ed5cc4e3">
+      <blockSID>Luanvancu:577</blockSID>
+      <mexPath>C:\Program Files\MATLAB\Thesis_Process_Model\ThermalElectricity\AdsRead.mexw64</mexPath>
+      <name>AdsRead</name>
+      <parameters type="ModelRefInfoRepo.SFcnParameter" uuid="cae38f41-2522-407b-b82c-db7d56246629">
+        <parameter>AAFJTQAAAAAOAAAAYAAAAAYAAAAIAAAABgAAAAAAAAAFAAAACAAAAAEAAAAGAAAAAQAAAAAAAAAJAAAAMAAAAAAAAAAAAGhAAAAAAAAAZUAAAAAAAABMQAAAAAAAAPA/AAAAAAAA8D8AAAAAAADwPw==</parameter>
+      </parameters>
+      <parameters type="ModelRefInfoRepo.SFcnParameter" uuid="e70007db-dc32-4b4e-a5b3-06f2653e266e">
+        <parameter>AAFJTQAAAAAOAAAAOAAAAAYAAAAIAAAABgAAAAAAAAAFAAAACAAAAAEAAAABAAAAAQAAAAAAAAAJAAAACAAAAAAAAAAAmIpA</parameter>
+      </parameters>
+      <sourceCodeExists>true</sourceCodeExists>
+    </sFcnInfo>
+    <timingAndTaskingRegistry></timingAndTaskingRegistry>
+    <FMUBlockMap type="ModelRefInfoRepo.FMUBlockInfo" uuid="db1e5d06-9a89-4886-8415-434e9b7a09fd"/>
+    <periodicEventPortUnsupportedBlockInfo type="ModelRefInfoRepo.PeriodicEventPortUnsupportedBlockInfo" uuid="cbe34c5b-4f86-4623-b10d-48098789ad3a"/>
+    <simulinkFunctions type="ModelRefInfoRepo.SimulinkFunctions" uuid="41f69b62-6487-4fd5-b382-64a29a7f67cd">
+      <compSimulinkFunctionCatalog>AAFJTQAAAAAOAAAA0AAAAAYAAAAIAAAAAgAAAAAAAAAFAAAACAAAAAEAAAABAAAAAQAAAAAAAAAFAAQAEQAAAAEAAAAiAAAAQ29tcEZ1bmN0aW9ucwAAAABDb21wU2VydmljZVBvcnRzAAAAAAAAAA4AAAAwAAAABgAAAAgAAAAGAAAAAAAAAAUAAAAIAAAAAAAAAAAAAAABAAAAAAAAAAkAAAAAAAAADgAAADAAAAAGAAAACAAAAAYAAAAAAAAABQAAAAgAAAAAAAAAAAAAAAEAAAAAAAAACQAAAAAAAAA=</compSimulinkFunctionCatalog>
+      <variantSimulinkFunctions type="ModelRefInfoRepo.VariantSimulinkFunctions" uuid="049d4ec7-9646-44bb-b7a5-4d717ab74388"/>
+    </simulinkFunctions>
+    <stateWriterToOwnerMap type="ModelRefInfoRepo.StateWriterInfo" uuid="7e81cf1f-5967-4eac-a502-88996aa09dd6"/>
+    <unionTsContainedTs type="ModelRefInfoRepo.UnionTsContainedTsInfo" uuid="db90827d-7671-4958-8839-f18c1e4146f1"/>
+  </ModelRefInfoRepo.ModelRefInfoRoot>
+</MF0>

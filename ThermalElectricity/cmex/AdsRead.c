@@ -1,3 +1,6 @@
+#define NumVar 6
+#define Offset 168
+
 #define S_FUNCTION_NAME  AdsRead
 #define S_FUNCTION_LEVEL 2
 #include "simstruc.h"
@@ -7,7 +10,7 @@
 long      nErr, nPort;
 AmsAddr   Addr;
 PAmsAddr  pAddr = &Addr;
-double    dwData[7];
+double    dwData[NumVar];
 
 static void mdlInitializeSizes(SimStruct *S)
 {
@@ -20,14 +23,11 @@ static void mdlInitializeSizes(SimStruct *S)
     ssSetInputPortWidth(S, 0, DYNAMICALLY_SIZED);
     ssSetInputPortDirectFeedThrough(S, 0, 1);
 
-    if (!ssSetNumOutputPorts(S,7)) return;
-    ssSetOutputPortWidth(S, 0, DYNAMICALLY_SIZED);
-    ssSetOutputPortWidth(S, 1, DYNAMICALLY_SIZED);
-    ssSetOutputPortWidth(S, 2, DYNAMICALLY_SIZED);
-    ssSetOutputPortWidth(S, 3, DYNAMICALLY_SIZED);
-    ssSetOutputPortWidth(S, 4, DYNAMICALLY_SIZED);
-    ssSetOutputPortWidth(S, 5, DYNAMICALLY_SIZED);
-    ssSetOutputPortWidth(S, 6, DYNAMICALLY_SIZED);
+    if (!ssSetNumOutputPorts(S,NumVar)) return;
+    for (int_T i=0; i<NumVar; i++)
+    {
+        ssSetOutputPortWidth(S, i, DYNAMICALLY_SIZED);
+    }
 
     ssSetNumSampleTimes(S, 1);
 
@@ -45,16 +45,15 @@ static void mdlInitializeSampleTimes(SimStruct *S)
 }
 static void mdlOutputs(SimStruct *S, int_T tid)
 {
-    int_T i;
     InputRealPtrsType uPtrs = ssGetInputPortRealSignalPtrs(S,0);
-    real_T *y[7];
-    for (i=0;i<7;i++)
+    real_T *y[NumVar];
+    for (int_T i=0;i<NumVar;i++)
     {
         y[i] = ssGetOutputPortRealSignal(S,i);
     }
 
-    nErr = AdsSyncReadReq(pAddr, 0x4040, 385072, 56, dwData);
-    for (i=0; i<7; i++) {
+    nErr = AdsSyncReadReq(pAddr, 0x4020, Offset, 8*NumVar, dwData);
+    for (int_T i=0; i<NumVar; i++) {
         *y[i] = dwData[i];
     }
 }

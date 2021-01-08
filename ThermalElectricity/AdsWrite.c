@@ -1,4 +1,4 @@
-#define NumVar 1
+#define NumVar 21
 #define Offset 0
 
 #define S_FUNCTION_NAME  AdsWrite
@@ -86,7 +86,7 @@ static void mdlOutputs(SimStruct *S, int_T tid)
     {
         dwData[i] = *uPtrs[i];
     }
-    nErr = AdsSyncWriteReq(pAddr, 0x4040, Offset, 8*NumVar, dwData);
+    nErr = AdsSyncWriteReq(pAddr, 0x4020, Offset, 8*NumVar, dwData);
 }
 
 static void mdlTerminate(SimStruct *S){
