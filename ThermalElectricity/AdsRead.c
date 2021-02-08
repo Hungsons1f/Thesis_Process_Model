@@ -1,4 +1,4 @@
-#define NumVar 6
+#define NumVar 10
 #define Offset 168
 
 #define S_FUNCTION_NAME  AdsRead
