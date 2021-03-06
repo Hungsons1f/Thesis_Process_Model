@@ -84,6 +84,8 @@ static void mdlOutputs(SimStruct *S, int_T tid)
     InputRealPtrsType uPtrs = ssGetInputPortRealSignalPtrs(S,0);
     for (int_T i=0;i< NumVar;i++)
     {
+        		modbus_set_float(f[i],tab_reg + i * 2);
+
         dwData[i] = *uPtrs[i];
     }
     nErr = AdsSyncWriteReq(pAddr, 0x4020, Offset, 8*NumVar, dwData);
