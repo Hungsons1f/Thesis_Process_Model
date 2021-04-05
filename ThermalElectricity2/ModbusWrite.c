@@ -4,8 +4,8 @@
 #include "matrix.h"
 #include "modbus.h"
 
-#define Address 12288
-#define NumVar 21
+#define Address (12288 +10*2)
+#define NumVar 28
 
 modbus_t *mb;
 uint16_t tab_reg[NumVar*2];

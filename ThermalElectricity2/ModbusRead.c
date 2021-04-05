@@ -4,7 +4,7 @@
 #include "matrix.h"
 #include "modbus.h"
 
-#define Address (12288+21*2)
+#define Address (12288)
 #define NumVar 10
 
 modbus_t *mb;
